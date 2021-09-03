@@ -12,5 +12,23 @@
 
   <body>
     <%= yield %>
+	
+<% if user_signed_in? %>
+      <ul>
+        <li><%= blog_to 'Submit blog', new_blog_path %></li>
+        <li><%= blog_to 'Account', edit_user_registration_path %></li>
+        <li><%= blog_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= blog_path 'Sign up', new_user_registration_path %></li>
+        <li><%= blog_path 'Sign in', new_user_session_path %></li>
+      </ul>
+<% end %>
+
+	
+	   <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
   </body>
 </html>
